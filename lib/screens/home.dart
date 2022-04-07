@@ -22,7 +22,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -32,22 +31,21 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-          ],
-        ),
+      body: ListView(
+        physics: const BouncingScrollPhysics(),
+        children: [
+          Row(children: const [
+            Padding(padding: EdgeInsets.only(left:20, top:20, bottom:20),
+            child: Text('플러터 메모', style: TextStyle(fontSize: 36, color: Colors.blue),),)
+          ],),
+          ...LoadMemo()
+
+        ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: (){
-          Navigator.push(context, CupertinoPageRoute(builder: (context) => EditPage()));
+        onPressed: () {
+          Navigator.push(
+              context, CupertinoPageRoute(builder: (context) => EditPage()));
         },
         tooltip: '노트를 추가하려면 클릭하세요',
         label: const Text('메모 추가'),
@@ -55,4 +53,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+List LoadMemo() {
+  List memoList = [];
+
+  return memoList;
 }
